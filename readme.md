@@ -1,4 +1,4 @@
-##laravel 仿知乎demo
+## laravel 仿知乎demo
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
