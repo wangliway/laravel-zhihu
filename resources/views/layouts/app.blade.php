@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }} ">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -91,6 +91,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    @yield('js')
     <script>
         $('#flash-overlay-modal').modal();
     </script>

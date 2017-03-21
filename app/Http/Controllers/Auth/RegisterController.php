@@ -87,7 +87,6 @@ class RegisterController extends Controller
 
         Mail::raw($template, function ($message) use($user) {
             $message->from('1134607817@qq.com', 'wangliway');
-
             $message->to($user->email);
         });
     }
