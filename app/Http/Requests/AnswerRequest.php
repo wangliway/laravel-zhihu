@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionsRequest extends FormRequest
+class AnswerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,15 @@ class QuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:6|max:196',
             'body' => 'required|min:6',
-            'topics' =>'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => '请填写标题！',
-            'title.min' => '标题必须为6个字符',
-            'title.max' => '标题不能超过196个字符',
-            'body.required' => '请填写问题描述',
-            'body.min' => '问题必须为6个字符以上',
-            'topics.required'=>'请选择一个话题'
+            'body.required' => '请填写答案',
+            'body.min' => '答案必须为6个字符以上',
         ];
     }
 }

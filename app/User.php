@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar','confirmation_token','is_active'
+        'name', 'email', 'password', 'avatar', 'confirmation_token', 'is_active'
     ];
 
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $bind_data = [
-            'url' => url('password/reset',$token),
+            'url' => url('password/reset', $token),
         ];
         $template = new SendCloudTemplate('zhihu_forgot_password', $bind_data);
 
@@ -41,5 +42,33 @@ class User extends Authenticatable
 
             $message->to($this->email);
         });
+    }
+
+    /**
+     * 查找问题是否属于用户
+     * @param $model
+     * @return bool
+     * @internal param $questionId
+     * @internal param $id
+     */
+    public function owns($model)
+    {
+        return $this->id == $model->user_id;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }

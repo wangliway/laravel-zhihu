@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\Console\Question\Question;
+use App\Question;
 
 class Topic extends Model
 {
@@ -21,14 +21,6 @@ class Topic extends Model
      */
     public static function createNewTopic($topics)
     {
-        $topic_ids = collect($topics)->map(function ($topic) {
-            //如果是数字可能为数据库已经存在的话题也可能为新增的数字
-            if (is_numeric($topic)) {
-                self::find($topic)->increment('questions_count');
-                return $topic;
-            }
-            return self::create(['name' => $topic,'questions_count'=>1])->id;
-        });
-        return $topic_ids->toArray();
+
     }
 }
